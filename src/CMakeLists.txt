@@ -18,7 +18,7 @@ set( CMAKE_AUTORCC ON )
 #### BUILD TARGET ####
 set(TARGET_NAME "HighPerfVisualizationWidget")
 
-add_executable( ${TARGET_NAME} main.cpp imageviewbase.h imageviewbase.cpp imageview.h imageview.cpp )
+add_executable( ${TARGET_NAME} main.cpp imageviewbase.h imageviewbase.cpp imageview.h imageview.cpp spammer.h spammer.cpp)
 target_link_libraries ( ${TARGET_NAME} PRIVATE ${QT_LIBS} )
 
 if(MSVC)

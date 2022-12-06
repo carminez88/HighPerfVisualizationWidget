@@ -1,5 +1,9 @@
 #include <QApplication>
+#include <QThread>
+#include <QtConcurrent>
 
+
+#include "spammer.h"
 #include "imageview.h"
 
 int32_t main(int32_t argc, char *argv[])
@@ -13,7 +17,11 @@ int32_t main(int32_t argc, char *argv[])
     imgView.init( k_width, k_height, QImage::Format_Grayscale8 );
     imgView.show();
 
-    // TODO: add data emitter
+    Spammer spammer;
+
+    QObject::connect( &spammer, &Spammer::spam, &imgView, &ImageView::updateImageData, Qt::QueuedConnection );
+
+    QThreadPool::globalInstance()->start( &spammer );
 
     return a.exec();
 }
